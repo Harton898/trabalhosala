@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Componente CSS do Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+        integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Componente CSS com biblioteca de ícones do Bootstrap 5 (https://icons.getbootstrap.com/) -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"
+        integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fundo da página com natureza */
+        body {
+            background-attachment: fixed;
+            background-color: #2d5016;
+            background-image: 
+                url('https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=1920&h=1080&fit=crop'),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.05) 10px, rgba(255,255,255,.05) 20px),
+                repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255,255,255,.03) 10px, rgba(255,255,255,.03) 20px),
+                linear-gradient(135deg, rgba(26, 58, 10, 0.7) 0%, rgba(45, 80, 22, 0.7) 50%, rgba(61, 107, 31, 0.7) 100%);
+            background-position: center, 0 0, 0 0, 0 0;
+            background-size: cover, auto, auto, auto;
+            background-repeat: no-repeat, repeat, repeat, repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        /* Navbar customizada */
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        /* Jumbotron personalizado */
+        .jumbotron-custom {
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.9) 0%, rgba(61, 107, 31, 0.9) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .jumbotron-custom h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+
+        .jumbotron-custom p {
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .btn-login {
+            background: linear-gradient(90deg, #ff6b6b 0%, #ee5a5a 100%);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(90deg, #ff5252 0%, #ee3c3c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+            color: white;
+        }
+
+        /* Modal de Login */
+        .modal-content {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+        }
+
+        .modal-header {
+            background: linear-gradient(90deg, #2d5016 0%, #3d6b1f 100%);
+            color: white;
+            border: none;
+            border-radius: 15px 15px 0 0;
+            padding: 30px;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(10);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .form-floating > label {
+            color: #2d5016;
+            font-weight: 500;
+        }
+
+        .form-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #2d5016;
+            box-shadow: 0 0 0 0.2rem rgba(45, 80, 22, 0.25);
+        }
+
+        .btn-success {
+            background: linear-gradient(90deg, #2d5016 0%, #3d6b1f 100%);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(90deg, #1a3a0a 0%, #2d5016 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 80, 22, 0.4);
+        }
+
+        /* Main content */
+        main {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            padding: 40px !important;
+        }
+
+        h2 {
+            color: #2d5016;
+            font-weight: 700;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #3d6b1f;
+            padding-bottom: 15px;
+        }
+
+        main p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Carrocel */
+        .carousel-control-prev, .carousel-control-next {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0 10px;
+        }
+
+        .carousel-inner img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Links do footer */
+        .my-links a {
+            text-decoration: none;
+            color: rgb(183, 183, 183);
+            transition: all 0.3s ease;
+        }
+
+        .my-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .my-links h5 {
+            color: #fff;
+        }
+
+        footer {
+            margin-top: 40px;
+            background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-top: 3px solid #2d5016;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        main {
+            animation: fadeIn 0.6s ease;
+        }
+    </style>
+    <title>PrimeProject - Natureza e Beleza</title>
+</head>
+
+<body class="d-flex flex-column position-relative">
+
+    <a id="top"></a>
+
+    <!-- NavBar do Bootstrap adaptada para o projeto -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-leaf-fill text-success"></i> Prime Project
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="content.html">Conteúdo</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Sobre</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="site.html">O site</a></li>
+                            <li><a class="dropdown-item" href="contact.html">Contatos</a></li>
+                            <li><a class="dropdown-item" href="privacy.html">Políticas de Privacidade</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="btn btn-login" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="bi bi-box-arrow-in-right"></i> Entrar
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron-custom">
+        <h1><i class="bi bi-flower1"></i> Bem-vindo ao Prime Project</h1>
+        <p>Explore a beleza e a magia da natureza em sua forma mais pura</p>
+        <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#loginModal" style="font-weight: 600;">
+            <i class="bi bi-person-circle"></i> Acessar sua Conta
+        </button>
+    </div>
+
+    <!-- Modal de Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-shield-check"></i> Acesso à Plataforma
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm" onsubmit="handleLogin(event)">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                            <label for="email"><i class="bi bi-envelope"></i> Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="password" placeholder="Sua Senha" required>
+                            <label for="password"><i class="bi bi-lock"></i> Senha</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Lembrar de mim
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-box-arrow-in-right"></i> Entrar
+                        </button>
+                    </form>
+                    <hr>
+                    <div class="text-center">
+                        <p>Não tem conta? <a href="#" style="color: #2d5016; font-weight: 600;">Crie uma agora</a></p>
+                        <p><a href="#" style="color: #2d5016; font-weight: 600;">Esqueceu sua senha?</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container flex-grow-1">
+
+        <!-- Início do Carrocel -->
+        <div id="demo" class="carousel slide mb-5" data-bs-ride="carousel">
+
+            <!-- Indicadores / traços. Um para cada imagem atualizando o índice. -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+            </div>
+
+            <!-- Imagens do carrocel clicáveis. -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&h=500&fit=crop" alt="Montanhas" class="d-block">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=500&fit=crop" alt="Floresta" class="d-block">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1472791108553-c9405341e398?w=1200&h=500&fit=crop" alt="Lago" class="d-block">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=1200&h=500&fit=crop" alt="Floresta Tropical" class="d-block">
+                </div>
+            </div>
+
+            <!-- Controles -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+
+
+        <h2><i class="bi bi-flower2"></i> A Beleza Transcendental da Natureza</h2>
+        <p>Descubra a magia captivante da natureza em sua forma mais pura e inspiradora. Das montanhas imponentes que tocam o céu até as florestas exuberantes que abrigam vida diversa, nosso planeta oferece paisagens de tirar o fôlego que redefinem nossa compreensão da beleza. Cada elemento da natureza conta uma história de milhões de anos de evolução, criando um mosaico de cores, formas e texturas que nos deixam maravilhados.</p>
+        
+        <p>As montanhas majestosas são testemunhas silenciosas da história do nosso mundo, moldadas por milhões de anos de transformação geológica. Elas nos lembram da força bruta e da permanência que ainda existe na natureza, enquanto seus picos cobertos de neve refletem a luz do sol em espetáculos visuais incomparáveis.</p>
+        
+        <p>As florestas são os pulmões do nosso planeta, sistemas complexos e interconectados onde cada árvore, cada animal e cada folha desempenha um papel vital no equilíbrio ecológico. Caminhar por entre seus caminhos arborizados é aproximar-se da essência da vida e da renovação constante.</p>
+        
+        <p>Os lagos cristalinos funcionam como espelhos da natureza, refletindo não apenas as paisagens que os cercam, mas também o nosso próprio desejo de paz e tranquilidade. Suas águas serenas convidam-nos a desacelerar e reconectar com a simplicidade fundamental da existência.</p>
+        
+        <p>A preservação destes ambientes naturais é responsabilidade nossa. Cada ato de conservação, por menor que seja, contribui para assegurar que as gerações futuras possam apreciar a mesma magia que admiramos hoje. A natureza não é apenas um recurso; é nosso legado mais precioso.</p>
+        <p>Ao explorar estas imagens de natureza selvagem e intocada, somos convidados a refletir sobre nossa conexão com o mundo natural. Somos parte desta tapeçaria viva, e o nosso comportamento determina se ela continuará florescendo ou se desaparecerá gradualmente.</p>
+        <p>Cada montanha escalada, cada floresta explorada e cada lago visitado nos oferece uma lição humilde sobre a nossa pequenez no universo e a magnitude da criação. Estas experiências transformativas nos inspiram a viver com maior propósito e consciência.</p>
+        <p>A verdadeira riqueza não se mede em moedas ou possessões materiais, mas na qualidade do ar que respiramos, na pureza da água que bebemos e na serenidade que encontramos quando nos immergimos na natureza. Estes são os tesouro que verdadeiramente importam.</p>
+        <p>Convido você a embarcar nesta jornada de descoberta e apreciação pela natureza. Deixe que estas imagens o transportem para lugares de beleza indescritível, onde o sistema respiratório acalma, a mente clareia e o espírito se renova através de uma conexão profunda com o mundo natural.</p>
+        <p>Juntos, podemos garantir que a natureza continue a prosperar, que seus espaços selvagens permaneçam intocados e que as futuras gerações herdem um planeta tão vibrante e belo quanto o que desfrutamos hoje. Esta é a nossa missão, nosso desafio e nossa esperança.</p>
+    </main>
+
+
+    <footer class="bg-dark text-light mt-5">
+        <div class="container my-links">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-3"><i class="bi bi-share"></i> Redes Sociais:</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i> Facebook</a></li>
+                        <li class="mb-2"><a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i> Instagram</a></li>
+                        <li class="mb-2"><a href="https://youtube.com" target="_blank"><i class="bi bi-youtube"></i> YouTube</a></li>
+                        <li class="mb-2"><a href="https://github.com" target="_blank"><i class="bi bi-github"></i> GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="mb-3"><i class="bi bi-link-45deg"></i> Links Rápidos:</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="site.html">Sobre o site</a></li>
+                        <li class="mb-2"><a href="contact.html">Faça Contato</a></li>
+                        <li class="mb-2"><a href="privacy.html">Privacidade</a></li>
+                        <li class="mb-2"><a href="#">Sobre Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="d-flex align-items-center justify-content-between text-center">
+                <div><a href="index.html"><i class="bi bi-house-fill fs-3"></i></a></div>
+                <div>&copy; 2026 Prime Project - Todos os direitos reservados</div>
+                <div><a href="#top"><i class="bi bi-arrow-up-circle-fill fs-3"></i></a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Componente JavaScript do Bootstrap 5 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"
+        integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // Função de Login
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (email && password) {
+                alert(`✅ Bem-vindo!\n\nEmail: ${email}\n\nVocê foi autenticado com sucesso!`);
+                document.getElementById('loginForm').reset();
+                const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+                modal.hide();
+            }
+        }
+
+        // Efeito de scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
+</body>
+
+</html>

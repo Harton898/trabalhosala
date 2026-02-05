@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sobre o Site — Prime Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background: linear-gradient(180deg, #eef7ec 0%, #ffffff 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #222;
+            padding-top: 80px;
+        }
+        .card-custom {
+            max-width: 900px;
+            margin: 24px auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .lead { color: #2d5016; }
+        footer { margin-top: 48px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-leaf-fill text-success"></i> Prime Project</a>
+            <div>
+                <a class="btn btn-outline-light btn-sm me-2" href="index.html">Início</a>
+                <a class="btn btn-outline-light btn-sm" href="content.html">Conteúdo</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="card card-custom p-4">
+            <h1><i class="bi bi-info-circle-fill text-success"></i> Sobre este site</h1>
+            <p class="lead">Uma pequena apresentação das funcionalidades, tecnologias usadas e decisões de design.</p>
+
+            <h4 class="mt-3">Funcionalidades principais</h4>
+            <ul>
+                <li>Layout responsivo e moderno usando <strong>Bootstrap 5</strong>.</li>
+                <li>Jumbotron estilizado com chamada principal e botão de acesso.</li>
+                <li>Carrossel com imagens de natureza para destaque visual.</li>
+                <li>Formulário de login em um modal com validação básica em JavaScript.</li>
+                <li>Páginas internas: <code>content.html</code> (explorar a natureza) e esta <code>site.html</code>.</li>
+                <li>Fundo com imagem natural + hachuras verdes para textura, garantindo contraste e atmosfera.</li>
+            </ul>
+
+            <h4 class="mt-3">Como o site foi feito</h4>
+            <p>O site foi desenvolvido diretamente em HTML/CSS/JS com foco em simplicidade e acessibilidade. As decisões mais importantes:</p>
+            <ol>
+                <li>Framework CSS: <strong>Bootstrap 5</strong> para grid, componentes e responsividade.</li>
+                <li>Ícones: <strong>Bootstrap Icons</strong> para elementos visuais leves.</li>
+                <li>Imagens de fundo e carrossel: URLs públicas (Unsplash) para prototipagem rápida.</li>
+                <li>JS leve: manipulação do formulário de login e scroll suave sem frameworks adicionais.</li>
+                <li>Design: paleta verde natural, gradientes e sombras suaves para legibilidade.</li>
+            </ol>
+
+            <h4 class="mt-3">Boas práticas e próximas melhorias</h4>
+            <ul>
+                <li>Adicionar autenticação real (backend) para o login.</li>
+                <li>Otimizar imagens (tamanho e formatos WebP) para performance.</li>
+                <li>Adicionar meta tags <em>OG</em> e SEO on-page para compartilhamento.</li>
+                <li>Melhorar acessibilidade (ARIA, contraste e navegação por teclado).</li>
+                <li>Implementar testes e pipeline de build para produção.</li>
+            </ul>
+
+            <h4 class="mt-3">Arquivos chave</h4>
+            <p>Os arquivos presentes na raiz deste projeto incluem:</p>
+            <ul>
+                <li><code>index.html</code> — página principal com jumbotron, carrossel e login modal.</li>
+                <li><code>content.html</code> — guia sobre explorar a natureza de forma sustentável.</li>
+                <li><code>site.html</code> — esta página, descrevendo o projeto.</li>
+            </ul>
+
+            <p class="mt-3">Se quiser, posso:</p>
+            <ul>
+                <li>Adicionar autenticação front-to-back com um exemplo mínimo em Node/Express.</li>
+                <li>Otimizar imagens e adicionar meta tags para SEO/OG.</li>
+                <li>Gerar uma versão de produção com minificação e um pequeno README.</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="text-center py-4">
+        <div class="container">&copy; 2026 Prime Project</div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
